@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter as tk
 from tkinter import ttk
-from Buttons import Add_To_Listbox, Remove_From_Listbox, on_item_click
+from Buttons import Add_Initiative, on_item_click
 
 root = Tk()
 root.title("The Witcher Combatsupport")
@@ -46,13 +46,16 @@ ini_frame.pack(fill=tk.X, padx= 15)
 ini_inner_frame = tk.Frame(ini_frame)
 ini_label = tk.Label(ini_inner_frame, text="Initiative:", font=("Arial", 12, "bold"), anchor="center")
 ini_label.pack(side="left", padx=(5, 0))
-ini_add_btn = tk.Button(ini_inner_frame, text="Add", command=lambda: Add_To_Listbox(ini_listbox, "Nekker", 14))
+ini_add_btn = tk.Button(ini_inner_frame, text="Add", command=lambda: Add_Initiative(root, ini_listbox))
 ini_add_btn.pack(side="right")
 ini_inner_frame.pack(fill=X)
 
 ini_listbox = tk.Listbox(ini_frame, height=15, selectmode="single")
 ini_listbox.pack(side="bottom", pady=(0, 15), fill=tk.X)
-ini_listbox.bind("<<ListboxSelect>>", on_item_click)
+ini_listbox.bind("<Double-Button-1>", on_item_click)
+
+
+
 
 # 5. Linker Bereich für das Gegner-Raster
 left_frame = tk.Frame(top_container, bg="#2d2d2d")
