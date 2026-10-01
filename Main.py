@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter as tk
 from tkinter import ttk
-from Buttons import Add_Initiative, on_item_click
+from Buttons import Add_Initiative, on_item_click, Add_Enemy
 
 root = Tk()
 root.title("The Witcher Combatsupport")
@@ -34,7 +34,7 @@ save_btn = tk.Button(right_frame, text="Save Setup", width=25)
 save_btn.pack(pady=(7, 15))
 
 # New Enemy & Add Enemy:
-add_enemy_btn = tk.Button(right_frame, text="Add Enemy", width=25)
+add_enemy_btn = tk.Button(right_frame, text="Add Enemy", width=25, command=lambda:Add_Enemy(root, left_frame))
 new_enemy_btn = tk.Button(right_frame, text="New Enemy", width=25)
 add_enemy_btn.pack(pady=(15,7))
 new_enemy_btn.pack(pady=(7,30))
@@ -55,9 +55,17 @@ ini_listbox.pack(side="bottom", pady=(0, 15), fill=tk.X)
 ini_listbox.bind("<Double-Button-1>", on_item_click)
 
 
-
-
 # 5. Linker Bereich für das Gegner-Raster
 left_frame = tk.Frame(top_container, bg="#2d2d2d")
 left_frame.pack(side="left", fill="both", expand=True, padx=(0, 5))
+
+# 1. Das Sichtfenster (Canvas) für den linken Bereich
+canvas = tk.Canvas(left_frame, bg="#2b2b2b", highlightthickness=0)
+# 2. Die Scrollbar (Navigationsleiste)
+scrollbar = ttk.Scrollbar(left_frame, orient="vertical", command=canvas.yview)
+# Layout: Canvas links (groß), Scrollbar rechts daneben
+scrollbar.pack(side="right", fill="y")
+canvas.pack(side="left", fill="both", expand=True)
+
+
 root.mainloop()
